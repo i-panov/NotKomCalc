@@ -16,5 +16,11 @@ namespace NotKomCalc
         {
             InitializeComponent();
         }
+
+        private void num_Click(object sender, EventArgs e)
+        {
+            var digit = (sender as Button).Name.Last();
+            result.Text += digit;
+        }
     }
 }
