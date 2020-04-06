@@ -44,7 +44,7 @@
             this.opMinus = new System.Windows.Forms.Button();
             this.opDiv = new System.Windows.Forms.Button();
             this.clearAll = new System.Windows.Forms.Button();
-            this.clearCurrent = new System.Windows.Forms.Button();
+            this.clearText = new System.Windows.Forms.Button();
             this.opMul = new System.Windows.Forms.Button();
             this.result = new System.Windows.Forms.TextBox();
             this.changeSign = new System.Windows.Forms.Button();
@@ -169,6 +169,7 @@
             this.opPoint.TabStop = false;
             this.opPoint.Text = ".";
             this.opPoint.UseVisualStyleBackColor = true;
+            this.opPoint.Click += new System.EventHandler(this.operatorPoint_Click);
             // 
             // opSolve
             // 
@@ -179,6 +180,7 @@
             this.opSolve.TabStop = false;
             this.opSolve.Text = "=";
             this.opSolve.UseVisualStyleBackColor = true;
+            this.opSolve.Click += new System.EventHandler(this.operatorSolve_Click);
             // 
             // opPlus
             // 
@@ -187,8 +189,10 @@
             this.opPlus.Size = new System.Drawing.Size(60, 50);
             this.opPlus.TabIndex = 12;
             this.opPlus.TabStop = false;
+            this.opPlus.Tag = "1";
             this.opPlus.Text = "+";
             this.opPlus.UseVisualStyleBackColor = true;
+            this.opPlus.Click += new System.EventHandler(this.mathOperator_Click);
             // 
             // opMinus
             // 
@@ -197,8 +201,10 @@
             this.opMinus.Size = new System.Drawing.Size(60, 50);
             this.opMinus.TabIndex = 13;
             this.opMinus.TabStop = false;
+            this.opMinus.Tag = "2";
             this.opMinus.Text = "-";
             this.opMinus.UseVisualStyleBackColor = true;
+            this.opMinus.Click += new System.EventHandler(this.mathOperator_Click);
             // 
             // opDiv
             // 
@@ -207,8 +213,10 @@
             this.opDiv.Size = new System.Drawing.Size(60, 50);
             this.opDiv.TabIndex = 14;
             this.opDiv.TabStop = false;
+            this.opDiv.Tag = "8";
             this.opDiv.Text = "/";
             this.opDiv.UseVisualStyleBackColor = true;
+            this.opDiv.Click += new System.EventHandler(this.mathOperator_Click);
             // 
             // clearAll
             // 
@@ -219,16 +227,18 @@
             this.clearAll.TabStop = false;
             this.clearAll.Text = "C";
             this.clearAll.UseVisualStyleBackColor = true;
+            this.clearAll.Click += new System.EventHandler(this.clearAll_Click);
             // 
-            // clearCurrent
+            // clearText
             // 
-            this.clearCurrent.Location = new System.Drawing.Point(98, 67);
-            this.clearCurrent.Name = "clearCurrent";
-            this.clearCurrent.Size = new System.Drawing.Size(80, 50);
-            this.clearCurrent.TabIndex = 16;
-            this.clearCurrent.TabStop = false;
-            this.clearCurrent.Text = "CE";
-            this.clearCurrent.UseVisualStyleBackColor = true;
+            this.clearText.Location = new System.Drawing.Point(98, 67);
+            this.clearText.Name = "clearText";
+            this.clearText.Size = new System.Drawing.Size(80, 50);
+            this.clearText.TabIndex = 16;
+            this.clearText.TabStop = false;
+            this.clearText.Text = "CE";
+            this.clearText.UseVisualStyleBackColor = true;
+            this.clearText.Click += new System.EventHandler(this.clearText_Click);
             // 
             // opMul
             // 
@@ -237,8 +247,10 @@
             this.opMul.Size = new System.Drawing.Size(60, 50);
             this.opMul.TabIndex = 17;
             this.opMul.TabStop = false;
+            this.opMul.Tag = "4";
             this.opMul.Text = "x";
             this.opMul.UseVisualStyleBackColor = true;
+            this.opMul.Click += new System.EventHandler(this.mathOperator_Click);
             // 
             // result
             // 
@@ -246,7 +258,7 @@
             this.result.Location = new System.Drawing.Point(12, 15);
             this.result.Name = "result";
             this.result.ReadOnly = true;
-            this.result.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.result.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.result.Size = new System.Drawing.Size(318, 38);
             this.result.TabIndex = 19;
             this.result.TabStop = false;
@@ -261,16 +273,18 @@
             this.changeSign.TabStop = false;
             this.changeSign.Text = "+/-";
             this.changeSign.UseVisualStyleBackColor = true;
+            this.changeSign.Click += new System.EventHandler(this.changeSign_Click);
             // 
             // MainForm
             // 
+            this.AcceptButton = this.opSolve;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(339, 350);
             this.Controls.Add(this.changeSign);
             this.Controls.Add(this.result);
             this.Controls.Add(this.opMul);
-            this.Controls.Add(this.clearCurrent);
+            this.Controls.Add(this.clearText);
             this.Controls.Add(this.clearAll);
             this.Controls.Add(this.opDiv);
             this.Controls.Add(this.opMinus);
@@ -288,9 +302,11 @@
             this.Controls.Add(this.num2);
             this.Controls.Add(this.num1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.KeyPreview = true;
             this.MaximizeBox = false;
             this.Name = "MainForm";
             this.Text = "Калькулятор";
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.MainForm_KeyPress);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -314,7 +330,7 @@
         private System.Windows.Forms.Button opMinus;
         private System.Windows.Forms.Button opDiv;
         private System.Windows.Forms.Button clearAll;
-        private System.Windows.Forms.Button clearCurrent;
+        private System.Windows.Forms.Button clearText;
         private System.Windows.Forms.Button opMul;
         private System.Windows.Forms.TextBox result;
         private System.Windows.Forms.Button changeSign;
